@@ -1,0 +1,17 @@
+[33mcommit 3b59ea9c3de124bc304af77cf879f6753014aa2c[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m)[m
+Author: Aurora Zen <nuyenphat2468@gmail.com>
+Date:   Sun Apr 26 19:32:24 2026 +0700
+
+    add models and repository
+
+[33mcommit 5cdf00f4f22761635d7619c72430c20a696d85cc[m[33m ([m[1;32mqllkdt1[m[33m)[m
+Author: Aurora Zen <nuyenphat2468@gmail.com>
+Date:   Sun Apr 26 19:22:39 2026 +0700
+
+    add models and reposotories
+
+[33mcommit 0874cce9af91d46ca9d10ebc23e847c5eceec858[m
+Author: Aurora Zen <nuyenphat2468@gmail.com>
+Date:   Sun Apr 26 16:25:23 2026 +0700
+
+    Add database
