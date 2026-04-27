@@ -1,8 +1,6 @@
 ﻿CREATE DATABASE QL_PHUKIEN_DIENTU
 USE QL_PHUKIEN_DIENTU;
 
-drop database ql_linhkien_dientu
-
 -- 1. BẢNG TÀI KHOẢN (Đã cập nhật hỗ trợ đăng nhập Google/OAuth2)
 CREATE TABLE TaiKhoan (
     TenDangNhap VARCHAR(100) PRIMARY KEY, -- Khách hàng dùng Email, Nhân viên dùng Username
@@ -111,6 +109,37 @@ CREATE TABLE ChiTietPhieuNhap (
     GiaNhap DECIMAL(18,2),
     PRIMARY KEY (MaPN, MaSP)
 )
+GO
+
+ALTER TABLE HoaDon ADD NgayThanhToan DATETIME NULL;
+
+-- 12. bảng TinNhan cho Live Chat
+CREATE TABLE TinNhan (
+	MaTN INT PRIMARY KEY IDENTITY(1,1),
+	NguoiGui VARCHAR(100),
+	NguoiNhan VARCHAR(100),
+	NoiDung NVARCHAR(MAX),
+	ThoiGian DATETIME DEFAULT GETDATE(),
+	DaDoc BIT DEFAULT 0
+);
+
+-- 13. bảng ThongBao cho hệ thống
+CREATE TABLE ThongBao (
+	MaTB INT PRIMARY KEY IDENTITY(1,1),
+	TieuDe NVARCHAR(255),
+	NoiDung NVARCHAR(MAX),
+	NgayTao DATETIME DEFAULT GETDATE(),
+	TrangThai BIT DEFAULT 0 -- 0: Chưa xem, 1: Đã xem
+);
+GO
+
+-- 14. Bang chi tiet gio hang
+CREATE TABLE ChiTietGioHang (
+	MaKH CHAR(5) FOREIGN KEY REFERENCES KhachHang(MaKH),
+	MaSP CHAR(5) FOREIGN KEY REFERENCES SanPham(MaSP),
+	SoLuong INT,
+	PRIMARY KEY (MaKH, MaSP)
+);
 GO
 
 ----------------------------------------------------
