@@ -2,7 +2,7 @@ package com.doan.qllinhkiendientu.models;
 
 import jakarta.persistence.*;
 import lombok.*;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "BinhLuan")
@@ -12,24 +12,30 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class BinhLuan {
     @Id
+    @Column(name = "MaBL", columnDefinition = "CHAR(5)")
     private String maBl;
 
     @ManyToOne
-    @JoinColumn(name = "maSp")
+    @JoinColumn(name = "MaSP", columnDefinition = "CHAR(5)")
     private SanPham sanPham;
 
     @ManyToOne
-    @JoinColumn(name = "maKh")
+    @JoinColumn(name = "MaKH", columnDefinition = "CHAR(5)")
     private KhachHang khachHang;
 
+    @Column(name = "NoiDung")
     private String noiDung;
+
+    @Column(name = "SoSao")
     private int soSao;
-    private LocalDateTime ngayDang;
+
+    @Column(name = "NgayDang", columnDefinition = "DATE")
+    private LocalDate ngayDang;
 
     @PrePersist
     protected void onCreate() {
         if (this.ngayDang == null) {
-            this.ngayDang = LocalDateTime.now();
+            this.ngayDang = LocalDate.now();
         }
     }
 }
