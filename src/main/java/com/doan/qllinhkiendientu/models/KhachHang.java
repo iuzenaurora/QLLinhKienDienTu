@@ -12,15 +12,34 @@ import java.util.List;
 @AllArgsConstructor
 public class KhachHang {
     @Id
+    @Column(name = "MaKH")
     private String maKh;
-    private String tenKh;
+
+    @Column(name = "HoTen", nullable = false)
+    private String hoTen;
+
+    @Column(name = "GioiTinh")
+    private String gioiTinh;
+
+    @Column(name = "DiaChi")
     private String diaChi;
-    private String sdt;
+
+    @Column(name = "DienThoai")
+    private String dienThoai;
+
+    @Column(name = "Email", unique = true)
     private String email;
+
+    @OneToOne
+    @JoinColumn(name = "TenDangNhap")
+    private TaiKhoan taiKhoan;
 
     @OneToMany(mappedBy = "khachHang")
     private List<HoaDon> dsHoaDon;
 
     @OneToMany(mappedBy = "khachHang")
     private List<BinhLuan> dsBinhLuan;
+
+    @OneToMany(mappedBy = "khachHang", cascade = CascadeType.ALL)
+    private List<ChiTietGioHang> dsGioHang;
 }

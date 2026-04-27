@@ -13,18 +13,40 @@ import java.util.List;
 @AllArgsConstructor
 public class HoaDon {
     @Id
+    @Column(name = "MaHD")
     private String maHd;
 
     @ManyToOne
-    @JoinColumn(name = "maKh")
+    @JoinColumn(name = "MaKH")
     private KhachHang khachHang;
 
     @ManyToOne
-    @JoinColumn(name = "maNv")
+    @JoinColumn(name = "MaNV")
     private NhanVien nhanVien;
 
+    @Column(name = "NgayLap")
     private LocalDateTime ngayLap;
+
+    @Column(name = "TongTien")
     private double tongTien;
+
+    @Column(name = "TrangThai")
+    private String trangThai; // "Chưa giao", "Đã giao", ...
+
+    @Column(name = "PhuongThucThanhToan")
+    private String phuongThucThanhToan;
+
+    @Column(name = "DiaChiGiaoHang")
+    private String diaChiGiaoHang;
+
+    @Column(name = "SoDienThoaiGiaoHang")
+    private String soDienThoaiGiaoHang;
+
+    @Column(name = "MaGiaoDichVNPAY")
+    private String maGiaoDichVNPAY;
+
+    @Column(name = "NgayThanhToan")
+    private LocalDateTime ngayThanhToan;
 
     @OneToMany(mappedBy = "hoaDon", cascade = CascadeType.ALL)
     private List<ChiTietHoaDon> dsChiTiet;

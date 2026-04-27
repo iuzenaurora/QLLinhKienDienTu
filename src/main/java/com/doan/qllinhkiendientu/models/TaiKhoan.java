@@ -11,10 +11,21 @@ import lombok.*;
 @AllArgsConstructor
 public class TaiKhoan {
     @Id
+    @Column(name = "TenDangNhap")
     private String tenDangNhap;
+
+    @Column(name = "MatKhau")
     private String matKhau;
+
+    @Column(name = "Quyen", nullable = false)
     private String quyen;
 
-    // Giả định mỗi nhân viên hoặc khách hàng có 1 tài khoản
-    // Nếu thiết kế DB của bạn khác, có thể điều chỉnh lại ở đây
+    @Column(name = "TrangThai")
+    private boolean trangThai = true;
+
+    @Column(name = "LoaiTaiKhoan")
+    private String loaiTaiKhoan = "LOCAL"; // 'LOCAL', 'GOOGLE', 'FACEBOOK'
+
+    @Column(name = "ProviderId")
+    private String providerId;
 }

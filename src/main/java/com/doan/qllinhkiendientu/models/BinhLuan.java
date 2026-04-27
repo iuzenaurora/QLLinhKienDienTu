@@ -12,18 +12,24 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class BinhLuan {
     @Id
+    @Column(name = "MaBL")
     private String maBl;
 
     @ManyToOne
-    @JoinColumn(name = "maSp")
+    @JoinColumn(name = "MaSP")
     private SanPham sanPham;
 
     @ManyToOne
-    @JoinColumn(name = "maKh")
+    @JoinColumn(name = "MaKH")
     private KhachHang khachHang;
 
+    @Column(name = "NoiDung")
     private String noiDung;
+
+    @Column(name = "SoSao")
     private int soSao;
+
+    @Column(name = "NgayDang")
     private LocalDateTime ngayDang;
 
     @PrePersist

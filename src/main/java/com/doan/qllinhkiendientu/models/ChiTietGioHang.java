@@ -4,18 +4,18 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
-@Table(name = "ChiTietHoaDon")
-@IdClass(ChiTietHoaDonId.class)
+@Table(name = "ChiTietGioHang")
+@IdClass(ChiTietGioHangId.class)
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class ChiTietHoaDon {
+public class ChiTietGioHang {
 
     @Id
     @ManyToOne
-    @JoinColumn(name = "MaHD")
-    private HoaDon hoaDon;
+    @JoinColumn(name = "MaKH")
+    private KhachHang khachHang;
 
     @Id
     @ManyToOne
@@ -24,7 +24,4 @@ public class ChiTietHoaDon {
 
     @Column(name = "SoLuong")
     private int soLuong;
-
-    @Column(name = "DonGia")
-    private double donGia;
 }

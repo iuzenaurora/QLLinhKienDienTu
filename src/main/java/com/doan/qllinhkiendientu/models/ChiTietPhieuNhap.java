@@ -14,14 +14,17 @@ public class ChiTietPhieuNhap {
 
     @Id
     @ManyToOne
-    @JoinColumn(name = "maPn")
+    @JoinColumn(name = "MaPN")
     private PhieuNhap phieuNhap;
 
     @Id
     @ManyToOne
-    @JoinColumn(name = "maSp")
+    @JoinColumn(name = "MaSP")
     private SanPham sanPham;
 
-    private int soLuong;
+    @Column(name = "SoLuongNhap")
+    private int soLuongNhap;
+
+    @Column(name = "GiaNhap")
     private double giaNhap;
 }

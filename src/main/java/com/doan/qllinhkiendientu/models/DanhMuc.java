@@ -12,7 +12,10 @@ import java.util.List;
 @AllArgsConstructor
 public class DanhMuc {
     @Id
+    @Column(name = "MaDM")
     private String maDm;
+
+    @Column(name = "TenDM", nullable = false)
     private String tenDm;
 
     @OneToMany(mappedBy = "danhMuc")

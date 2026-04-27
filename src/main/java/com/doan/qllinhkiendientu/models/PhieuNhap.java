@@ -13,18 +13,25 @@ import java.util.List;
 @AllArgsConstructor
 public class PhieuNhap {
     @Id
+    @Column(name = "MaPN")
     private String maPn;
 
     @ManyToOne
-    @JoinColumn(name = "maNv")
+    @JoinColumn(name = "MaNV")
     private NhanVien nhanVien;
 
     @ManyToOne
-    @JoinColumn(name = "maNcc")
+    @JoinColumn(name = "MaNCC")
     private NhaCungCap nhaCungCap;
 
+    @Column(name = "NgayNhap")
     private LocalDateTime ngayNhap;
-    private double tongTien;
+
+    @Column(name = "TongTienNhap")
+    private double tongTienNhap;
+
+    @Column(name = "GhiChu")
+    private String ghiChu;
 
     @OneToMany(mappedBy = "phieuNhap", cascade = CascadeType.ALL)
     private List<ChiTietPhieuNhap> dsChiTiet;
