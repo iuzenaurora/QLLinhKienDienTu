@@ -14,12 +14,12 @@ public class ChiTietGioHang {
 
     @Id
     @ManyToOne
-    @JoinColumn(name = "MaKH")
+    @JoinColumn(name = "MaKH", columnDefinition = "CHAR(5)")
     private KhachHang khachHang;
 
     @Id
     @ManyToOne
-    @JoinColumn(name = "MaSP")
+    @JoinColumn(name = "MaSP", columnDefinition = "CHAR(5)")
     private SanPham sanPham;
 
     @Column(name = "SoLuong")

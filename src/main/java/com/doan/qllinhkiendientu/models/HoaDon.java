@@ -2,7 +2,9 @@ package com.doan.qllinhkiendientu.models;
 
 import jakarta.persistence.*;
 import lombok.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.math.BigDecimal;
 import java.util.List;
 
 @Entity
@@ -13,39 +15,37 @@ import java.util.List;
 @AllArgsConstructor
 public class HoaDon {
     @Id
-    @Column(name = "MaHD")
+    @Column(name = "MaHD", columnDefinition = "CHAR(5)")
     private String maHd;
 
     @ManyToOne
-    @JoinColumn(name = "MaKH")
+    @JoinColumn(name = "MaKH", columnDefinition = "CHAR(5)")
     private KhachHang khachHang;
 
     @ManyToOne
-    @JoinColumn(name = "MaNV")
+    @JoinColumn(name = "MaNV", columnDefinition = "CHAR(5)")
     private NhanVien nhanVien;
 
-    @Column(name = "NgayLap")
-    private LocalDateTime ngayLap;
+    @Column(name = "NgayLap", columnDefinition = "DATE")
+    private LocalDate ngayLap;
 
-    @Column(name = "TongTien")
-    private double tongTien;
+    @Column(name = "TongTien", columnDefinition = "DECIMAL(18,2)")
+    private BigDecimal tongTien;
 
-    @Column(name = "TrangThai")
+    @Column(name = "TrangThai", columnDefinition = "NVARCHAR(50)")
     private String trangThai; // "Chưa giao", "Đã giao", ...
 
-    @Column(name = "PhuongThucThanhToan")
+    @Column(name = "PhuongThucThanhToan", columnDefinition = "NVARCHAR(50)")
     private String phuongThucThanhToan;
 
-    @Column(name = "DiaChiGiaoHang")
+    @Column(name = "DiaChiGiaoHang", columnDefinition = "NVARCHAR(255)")
     private String diaChiGiaoHang;
 
-    @Column(name = "SoDienThoaiGiaoHang")
+    @Column(name = "SoDienThoaiGiaoHang", columnDefinition = "VARCHAR(15)")
     private String soDienThoaiGiaoHang;
 
-    @Column(name = "MaGiaoDichVNPAY")
-    private String maGiaoDichVNPAY;
 
-    @Column(name = "NgayThanhToan")
+    @Column(name = "NgayThanhToan", columnDefinition = "DATETIME")
     private LocalDateTime ngayThanhToan;
 
     @OneToMany(mappedBy = "hoaDon", cascade = CascadeType.ALL)
@@ -54,7 +54,7 @@ public class HoaDon {
     @PrePersist
     protected void onCreate() {
         if (this.ngayLap == null) {
-            this.ngayLap = LocalDateTime.now();
+            this.ngayLap = LocalDate.now();
         }
     }
 }

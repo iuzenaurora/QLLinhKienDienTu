@@ -2,6 +2,7 @@ package com.doan.qllinhkiendientu.models;
 
 import jakarta.persistence.*;
 import lombok.*;
+import java.math.BigDecimal;
 
 @Entity
 @Table(name = "ChiTietPhieuNhap")
@@ -14,17 +15,17 @@ public class ChiTietPhieuNhap {
 
     @Id
     @ManyToOne
-    @JoinColumn(name = "MaPN")
+    @JoinColumn(name = "MaPN", columnDefinition = "CHAR(5)")
     private PhieuNhap phieuNhap;
 
     @Id
     @ManyToOne
-    @JoinColumn(name = "MaSP")
+    @JoinColumn(name = "MaSP", columnDefinition = "CHAR(5)")
     private SanPham sanPham;
 
     @Column(name = "SoLuongNhap")
-    private int soLuongNhap;
+    private Integer soLuongNhap;
 
-    @Column(name = "GiaNhap")
-    private double giaNhap;
+    @Column(name = "GiaNhap", columnDefinition = "DECIMAL(18,2)")
+    private BigDecimal giaNhap;
 }

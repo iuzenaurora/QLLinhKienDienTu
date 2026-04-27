@@ -12,10 +12,10 @@ import java.util.List;
 @AllArgsConstructor
 public class DanhMuc {
     @Id
-    @Column(name = "MaDM")
+    @Column(name = "MaDM", columnDefinition = "CHAR(5)")
     private String maDm;
 
-    @Column(name = "TenDM", nullable = false)
+    @Column(name = "TenDM", nullable = false, columnDefinition = "NVARCHAR(100)")
     private String tenDm;
 
     @OneToMany(mappedBy = "danhMuc")

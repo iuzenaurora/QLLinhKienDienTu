@@ -12,19 +12,19 @@ import java.util.List;
 @AllArgsConstructor
 public class NhaCungCap {
     @Id
-    @Column(name = "MaNCC")
+    @Column(name = "MaNCC", columnDefinition = "CHAR(5)")
     private String maNcc;
 
-    @Column(name = "TenNCC", nullable = false)
+    @Column(name = "TenNCC", nullable = false, columnDefinition = "NVARCHAR(100)")
     private String tenNcc;
 
-    @Column(name = "DiaChi")
+    @Column(name = "DiaChi", columnDefinition = "NVARCHAR(255)")
     private String diaChi;
 
-    @Column(name = "SoDienThoai")
+    @Column(name = "SoDienThoai", columnDefinition = "VARCHAR(20)")
     private String soDienThoai;
 
-    @Column(name = "Email")
+    @Column(name = "Email", columnDefinition = "NVARCHAR(100)")
     private String email;
 
     @OneToMany(mappedBy = "nhaCungCap")

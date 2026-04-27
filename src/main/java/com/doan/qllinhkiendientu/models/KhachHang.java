@@ -12,26 +12,26 @@ import java.util.List;
 @AllArgsConstructor
 public class KhachHang {
     @Id
-    @Column(name = "MaKH")
+    @Column(name = "MaKH", columnDefinition = "CHAR(5)")
     private String maKh;
 
-    @Column(name = "HoTen", nullable = false)
+    @Column(name = "HoTen", nullable = false, columnDefinition = "NVARCHAR(100)")
     private String hoTen;
 
-    @Column(name = "GioiTinh")
+    @Column(name = "GioiTinh", columnDefinition = "NVARCHAR(10)")
     private String gioiTinh;
 
-    @Column(name = "DiaChi")
+    @Column(name = "DiaChi", columnDefinition = "NVARCHAR(255)")
     private String diaChi;
 
-    @Column(name = "DienThoai")
+    @Column(name = "DienThoai", columnDefinition = "VARCHAR(15)")
     private String dienThoai;
 
-    @Column(name = "Email", unique = true)
+    @Column(name = "Email", unique = true, columnDefinition = "NVARCHAR(100)")
     private String email;
 
     @OneToOne
-    @JoinColumn(name = "TenDangNhap")
+    @JoinColumn(name = "TenDangNhap", columnDefinition = "VARCHAR(100)")
     private TaiKhoan taiKhoan;
 
     @OneToMany(mappedBy = "khachHang")

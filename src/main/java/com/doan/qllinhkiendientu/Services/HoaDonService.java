@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -30,21 +32,20 @@ public class HoaDonService {
 
         // 1. Tạo đối tượng Hóa đơn
         HoaDon hoaDon = new HoaDon();
-        hoaDon.setMaHd("HD" + System.currentTimeMillis() % 1000); // Tạm thời tạo mã
+        hoaDon.setMaHd("HD" + (System.currentTimeMillis() % 100000)); // Mã ngắn gọn hơn
         hoaDon.setKhachHang(khachHang);
-        hoaDon.setNgayLap(LocalDateTime.now());
+        hoaDon.setNgayLap(LocalDate.now());
         hoaDon.setDiaChiGiaoHang(diaChi);
         hoaDon.setSoDienThoaiGiaoHang(sdt);
-        hoaDon.setPhuongThucThanhToan(phuongThuc); // "Tiền mặt" hoặc "Chuyển khoản"
+        hoaDon.setPhuongThucThanhToan(phuongThuc);
 
-        // Xử lý trạng thái dựa trên phương thức thanh toán
         if (phuongThuc.equalsIgnoreCase("Tiền mặt")) {
             hoaDon.setTrangThai("Chờ giao hàng (Thanh toán khi nhận hàng)");
         } else {
             hoaDon.setTrangThai("Chờ thanh toán (Chuyển khoản ngân hàng)");
         }
 
-        double tongTien = 0;
+        BigDecimal tongTien = BigDecimal.ZERO;
         HoaDon savedHoaDon = hoaDonRepository.save(hoaDon);
 
         // 2. Chuyển từ Giỏ hàng sang Chi tiết hóa đơn
@@ -67,7 +68,9 @@ public class HoaDonService {
             cthd.setDonGia(sp.getGia());
             chiTietHoaDonRepository.save(cthd);
 
-            tongTien += (sp.getGia() * item.getSoLuong());
+            // Tính tổng tiền: gia * soLuong
+            BigDecimal subTotal = sp.getGia().multiply(new BigDecimal(item.getSoLuong()));
+            tongTien = tongTien.add(subTotal);
         }
 
         // 3. Cập nhật tổng tiền và lưu lại
@@ -86,7 +89,6 @@ public class HoaDonService {
                 .orElseThrow(() -> new RuntimeException("Không tìm thấy hóa đơn!"));
 
         hd.setTrangThai("Đã thanh toán - Chờ giao hàng");
-        hd.setMaGiaoDichVNPAY(maGiaoDichVNPAY);
         hd.setNgayThanhToan(LocalDateTime.now());
 
         hoaDonRepository.save(hd);
