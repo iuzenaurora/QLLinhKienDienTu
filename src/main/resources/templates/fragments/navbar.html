@@ -1,0 +1,30 @@
+<nav th:fragment="navbar" class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" th:href="@{/}">PhuKienRe</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/}">Trang chủ</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/}">Sản phẩm</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/}">Giỏ hàng</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/}">Đăng nhập</a>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+</nav>
