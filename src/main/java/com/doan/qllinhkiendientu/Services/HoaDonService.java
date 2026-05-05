@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -34,7 +33,7 @@ public class HoaDonService {
         HoaDon hoaDon = new HoaDon();
         hoaDon.setMaHd("HD" + (System.currentTimeMillis() % 100000)); // Mã ngắn gọn hơn
         hoaDon.setKhachHang(khachHang);
-        hoaDon.setNgayLap(LocalDate.now());
+        hoaDon.setNgayLap(LocalDateTime.now());
         hoaDon.setDiaChiGiaoHang(diaChi);
         hoaDon.setSoDienThoaiGiaoHang(sdt);
         hoaDon.setPhuongThucThanhToan(phuongThuc);

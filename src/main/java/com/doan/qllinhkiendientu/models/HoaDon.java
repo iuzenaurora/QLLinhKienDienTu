@@ -2,7 +2,6 @@ package com.doan.qllinhkiendientu.models;
 
 import jakarta.persistence.*;
 import lombok.*;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.math.BigDecimal;
 import java.util.List;
@@ -26,14 +25,21 @@ public class HoaDon {
     @JoinColumn(name = "MaNV", columnDefinition = "CHAR(5)")
     private NhanVien nhanVien;
 
-    @Column(name = "NgayLap", columnDefinition = "DATE")
-    private LocalDate ngayLap;
+    @ManyToOne
+    @JoinColumn(name = "MaKM", columnDefinition = "CHAR(10)")
+    private KhuyenMai khuyenMai;
+
+    @Column(name = "TienGiamGia", columnDefinition = "DECIMAL(18,2)")
+    private BigDecimal tienGiamGia = BigDecimal.ZERO;
+
+    @Column(name = "NgayLap")
+    private LocalDateTime ngayLap;
 
     @Column(name = "TongTien", columnDefinition = "DECIMAL(18,2)")
     private BigDecimal tongTien;
 
     @Column(name = "TrangThai", columnDefinition = "NVARCHAR(50)")
-    private String trangThai; // "Chưa giao", "Đã giao", ...
+    private String trangThai = "Chờ thanh toán";
 
     @Column(name = "PhuongThucThanhToan", columnDefinition = "NVARCHAR(50)")
     private String phuongThucThanhToan;
@@ -44,8 +50,7 @@ public class HoaDon {
     @Column(name = "SoDienThoaiGiaoHang", columnDefinition = "VARCHAR(15)")
     private String soDienThoaiGiaoHang;
 
-
-    @Column(name = "NgayThanhToan", columnDefinition = "DATETIME")
+    @Column(name = "NgayThanhToan")
     private LocalDateTime ngayThanhToan;
 
     @OneToMany(mappedBy = "hoaDon", cascade = CascadeType.ALL)
@@ -54,7 +59,7 @@ public class HoaDon {
     @PrePersist
     protected void onCreate() {
         if (this.ngayLap == null) {
-            this.ngayLap = LocalDate.now();
+            this.ngayLap = LocalDateTime.now();
         }
     }
 }
