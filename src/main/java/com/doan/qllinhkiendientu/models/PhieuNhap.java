@@ -2,7 +2,7 @@ package com.doan.qllinhkiendientu.models;
 
 import jakarta.persistence.*;
 import lombok.*;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.math.BigDecimal;
 import java.util.List;
 
@@ -25,11 +25,11 @@ public class PhieuNhap {
     @JoinColumn(name = "MaNCC", columnDefinition = "CHAR(5)")
     private NhaCungCap nhaCungCap;
 
-    @Column(name = "NgayNhap", columnDefinition = "DATE")
-    private LocalDate ngayNhap;
+    @Column(name = "NgayNhap")
+    private LocalDateTime ngayNhap;
 
-    @Column(name = "TongTienNhap")
-    private BigDecimal tongTienNhap;
+    @Column(name = "TongTienNhap", columnDefinition = "DECIMAL(18,2)")
+    private BigDecimal tongTienNhap = BigDecimal.ZERO;
 
     @Column(name = "GhiChu")
     private String ghiChu;
@@ -40,7 +40,7 @@ public class PhieuNhap {
     @PrePersist
     protected void onCreate() {
         if (this.ngayNhap == null) {
-            this.ngayNhap = LocalDate.now();
+            this.ngayNhap = LocalDateTime.now();
         }
     }
 }

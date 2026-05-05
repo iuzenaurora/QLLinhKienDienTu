@@ -2,6 +2,7 @@ package com.doan.qllinhkiendientu.models;
 
 import jakarta.persistence.*;
 import lombok.*;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "ChiTietGioHang")
@@ -24,4 +25,14 @@ public class ChiTietGioHang {
 
     @Column(name = "SoLuong")
     private int soLuong;
+
+    @Column(name = "NgayThem")
+    private LocalDateTime ngayThem;
+
+    @PrePersist
+    protected void onCreate() {
+        if (this.ngayThem == null) {
+            this.ngayThem = LocalDateTime.now();
+        }
+    }
 }
