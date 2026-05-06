@@ -1,22 +1,66 @@
 <!DOCTYPE html>
-<html lang="en" th:fragment="layout(title, content)">
+<html lang="vi" th:fragment="layout(title, content)">
 <head>
     <meta charset="UTF-8">
-    <title th:replace="${title}">Title</title>
+    <title th:replace="${title}">PhuKienRe</title>
+    <!-- Nhúng Bootstrap 5 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Nhúng FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- CSS dùng chung toàn hệ thống -->
+    <style>
+        /* Tùy chỉnh màu sắc chủ đạo giống CellphoneS */
+        :root {
+            --cp-red: #d70018;
+            --cp-text-dark: #333333;
+            --cp-text-red: #cb1c22;
+        }
+
+        /* Flexbox cho body để đẩy footer xuống cuối trang nếu nội dung ngắn */
+        body {
+            background-color: #f4f6f8;
+            font-family: Arial, Helvetica, sans-serif;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* 1. CSS Cho Navbar */
+        .navbar-custom { background-color: var(--cp-red); padding: 10px 0; }
+        .navbar-brand { font-weight: bold; font-size: 1.6rem; color: #fff !important; }
+        .search-input { border-radius: 4px 0 0 4px; border: none; padding-left: 15px; box-shadow: none !important; }
+        .search-btn { border-radius: 0 4px 4px 0; background-color: transparent; color: white; border: 1px solid rgba(255,255,255,0.6); font-weight: 500; transition: 0.2s; }
+        .search-btn:hover { background-color: rgba(255,255,255,0.2); color: white; border-color: white; }
+        .nav-link-custom { color: white !important; font-weight: 500; padding: 0.5rem 1rem; transition: 0.2s; }
+        .nav-link-custom:hover { background-color: rgba(255,255,255,0.1); border-radius: 4px; }
+        .cart-badge { position: absolute; top: 0; right: 0px; background-color: #ffc107; color: #d70018; font-size: 11px; padding: 2px 6px; border-radius: 50%; font-weight: bold; line-height: 1; }
+
+        /* 2. CSS Cho Card Sản Phẩm dùng chung */
+        .product-card { border: 1px solid #f1f1f1; border-radius: 8px; transition: box-shadow 0.3s, transform 0.3s; background-color: white; }
+        .product-card:hover { box-shadow: 0 5px 15px rgba(0,0,0,0.08) !important; transform: translateY(-2px); z-index: 1; }
+        .card-title-custom { font-size: 14px; font-weight: 600; color: var(--cp-text-dark); line-height: 1.4; height: 39px; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; margin-bottom: 10px; transition: 0.2s; }
+        .card-title-custom:hover { color: var(--cp-red); }
+        .card-price { color: var(--cp-red); font-weight: 700; font-size: 16px; margin-bottom: 12px; }
+        .btn-add-cart { color: var(--cp-red); border: 1px solid var(--cp-red); background-color: white; font-weight: 500; font-size: 13px; padding: 6px 12px; border-radius: 4px; transition: all 0.2s; }
+        .btn-add-cart:hover { background-color: var(--cp-red); color: white; }
+
+        /* Tiện ích */
+        .main-container { max-width: 1200px; }
+    </style>
 </head>
 <body>
-    <!--Navbar-->
-    <div th:replace="~{fragments/navbar :: navbar}"></div>
+<!-- Navbar (Được gọi từ file fragments/navbar.html) -->
+<div th:replace="~{fragments/navbar :: navbar}"></div>
 
-    <!--Nội dung-->
-    <div class="container mb-5 mt-5">
-        <div class="row" th:insert="${content}"></div>
-    </div>
+<!-- Nội dung chính (Đẩy footer xuống đáy) -->
+<main class="flex-grow-1">
+    <div th:insert="${content}"></div>
+</main>
 
-    <!--footer-->
-    <div th:replace="~{fragments/footer :: footer}"></div>
+<!-- Footer (Được gọi từ file fragments/footer.html) -->
+<div th:replace="~{fragments/footer :: footer}"></div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

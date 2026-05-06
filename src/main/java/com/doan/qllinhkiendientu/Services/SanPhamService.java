@@ -18,4 +18,16 @@ public class SanPhamService {
     public List<SanPham> getAll(){
         return sanPhamRepository.findAll();
     }
+
+    public List<SanPham> searchByName(String keyword) {
+        return sanPhamRepository.findByTenSpContainingIgnoreCase(keyword);
+    }
+
+    public List<SanPham> filterByCategory(String maDm) {
+        return sanPhamRepository.findByDanhMucMaDm(maDm);
+    }
+
+    public SanPham getById(String id) {
+        return sanPhamRepository.findById(id).orElse(null);
+    }
 }

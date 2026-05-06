@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{layouts/layoutCustomer :: layout(~{::title}, ~{::section})}">
+<head>
+    <meta charset="UTF-8">
+    <title>Thanh toán</title>
+</head>
+<body>
+    <section>
+        <div class="container mt-4">
+            <h2 class="mb-4 text-center">Xác nhận thanh toán</h2>
+
+            <form th:action="@{/cart/checkout}" method="post">
+                <!-- Các input ẩn để phân biệt mua ngay hay mua giỏ hàng -->
+                <input type="hidden" name="maSp" th:if="${isDirect}" th:value="${singleProduct.maSp}">
+                <input type="hidden" name="soLuong" th:if="${isDirect}" th:value="${soLuong}">
+
+                <div class="row">
+                    <!-- Thông tin khách hàng & Giao hàng -->
+                    <div class="col-md-7">
+                        <div class="card shadow-sm border-0 mb-4">
+                            <div class="card-header bg-white fw-bold">Thông tin giao hàng</div>
+                            <div class="card-body">
+                                <div class="mb-3">
+                                    <label class="form-label">Họ tên khách hàng</label>
+                                    <input type="text" class="form-control" th:value="${customer.hoTen}" readonly>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Số điện thoại nhận hàng</label>
+                                    <input type="text" name="sdt" class="form-control" th:value="${customer.dienThoai}" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Địa chỉ nhận hàng</label>
+                                    <textarea name="diaChi" class="form-control" rows="3" th:text="${customer.diaChi}" required></textarea>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Phương thức thanh toán</label>
+                                    <select name="phuongThuc" class="form-select">
+                                        <option value="Tiền mặt">Thanh toán khi nhận hàng (COD)</option>
+                                        <option value="VNPAY">Thanh toán online qua VNPAY</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tóm tắt đơn hàng -->
+                    <div class="col-md-5">
+                        <div class="card shadow-sm border-0">
+                            <div class="card-header bg-white fw-bold">Đơn hàng của bạn</div>
+                            <div class="card-body">
+                                <ul class="list-group list-group-flush mb-3">
+                                    <!-- Trường hợp mua nhiều sản phẩm từ giỏ hàng -->
+                                    <li th:if="${not isDirect}" class="list-group-item d-flex justify-content-between align-items-center px-0" th:each="item : ${items}">
+                                        <div>
+                                            <span th:text="${item.sanPham.tenSp}" class="d-block small fw-bold"></span>
+                                            <small class="text-muted" th:text="'x' + ${item.soLuong}"></small>
+                                        </div>
+                                        <span class="small" th:text="${#numbers.formatDecimal(item.sanPham.gia.multiply(new java.math.BigDecimal(item.soLuong)), 0, 'COMMA', 0, 'POINT')} + ' đ'"></span>
+                                    </li>
+
+                                    <!-- Trường hợp mua ngay 1 sản phẩm -->
+                                    <li th:if="${isDirect}" class="list-group-item d-flex justify-content-between align-items-center px-0">
+                                        <div>
+                                            <span th:text="${singleProduct.tenSp}" class="d-block small fw-bold"></span>
+                                            <small class="text-muted" th:text="'x' + ${soLuong}"></small>
+                                        </div>
+                                        <span class="small" th:text="${#numbers.formatDecimal(singleProduct.gia.multiply(new java.math.BigDecimal(soLuong)), 0, 'COMMA', 0, 'POINT')} + ' đ'"></span>
+                                    </li>
+
+                                    <li class="list-group-item d-flex justify-content-between align-items-center px-0 border-top-0">
+                                        <span class="fw-bold">Tổng cộng:</span>
+                                        <span class="text-danger fw-bold fs-5" th:text="${#numbers.formatDecimal(total, 0, 'COMMA', 0, 'POINT')} + ' đ'"></span>
+                                    </li>
+                                </ul>
+                                <button type="submit" class="btn btn-danger w-100 btn-lg">XÁC NHẬN ĐẶT HÀNG</button>
+                                <a th:href="@{/cart}" class="btn btn-link w-100 text-muted mt-2">Quay lại giỏ hàng</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+</body>
+</html>

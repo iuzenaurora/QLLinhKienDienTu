@@ -1,29 +1,45 @@
-<nav th:fragment="navbar" class="navbar navbar-expand-lg navbar-dark bg-danger">
-    <div class="container-fluid">
-        <a class="navbar-brand" th:href="@{/}">PhuKienRe</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+<nav th:fragment="navbar" class="navbar navbar-expand-lg navbar-dark navbar-custom sticky-top shadow-sm">
+    <div class="container main-container">
+        <!-- Logo -->
+        <a class="navbar-brand me-2 me-lg-4" th:href="@{/}">
+            PhuKien<span style="color: #ffc107;">Re</span>
+        </a>
+
+        <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
             <span class="navbar-toggler-icon"></span>
         </button>
 
         <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
+            <!-- Thanh tìm kiếm -->
+            <form class="d-flex mx-auto w-100 my-2 my-lg-0 px-lg-3" style="max-width: 600px;" th:action="@{/}" method="get">
+                <div class="input-group">
+                    <input class="form-control search-input" type="search" placeholder="Tìm sản phẩm..." name="keyword" th:value="${param.keyword}">
+                    <button class="btn search-btn px-4" type="submit">Tìm</button>
+                </div>
+            </form>
 
+            <!-- Menu Liên kết -->
+            <ul class="navbar-nav ms-auto align-items-center mt-2 mt-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link" th:href="@{/}">Trang chủ</a>
+                    <a class="nav-link nav-link-custom" th:href="@{/}">Trang chủ</a>
                 </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" th:href="@{/}">Sản phẩm</a>
+                <li class="nav-item position-relative mx-lg-2 my-2 my-lg-0">
+                    <a class="nav-link nav-link-custom" th:href="@{/cart}">
+                        <i class="fas fa-shopping-cart me-1"></i> Giỏ hàng
+                    </a>
+                    <span class="cart-badge" th:text="${cartCount}">0</span>
                 </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" th:href="@{/}">Giỏ hàng</a>
+                <li class="nav-item ms-lg-2">
+                    <div class="dropdown">
+                        <button class="btn dropdown-toggle text-white rounded-1 px-3 py-1.5" style="background-color: rgba(255,255,255,0.25); border: none; font-size: 14px;" type="button" data-bs-toggle="dropdown">
+                            Tài khoản
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end shadow-sm border-0 mt-2">
+                            <li><a class="dropdown-item" th:href="@{/login}">Đăng nhập</a></li>
+                            <li><a class="dropdown-item" th:href="@{/register}">Đăng ký</a></li>
+                        </ul>
+                    </div>
                 </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" th:href="@{/}">Đăng nhập</a>
-                </li>
-
             </ul>
         </div>
     </div>

@@ -23,6 +23,48 @@ public class HoaDonService {
     private ChiTietGioHangRepository chiTietGioHangRepository;
 
     @Transactional
+    public HoaDon taoDonHangTrucTiep(KhachHang khachHang, String maSp, int soLuong, String diaChi, String sdt, String phuongThuc) {
+        SanPham sp = sanPhamRepository.findById(maSp)
+                .orElseThrow(() -> new RuntimeException("Sản phẩm không tồn tại"));
+
+        if (sp.getSoLuong() < soLuong) {
+            throw new RuntimeException("Sản phẩm " + sp.getTenSp() + " không đủ tồn kho!");
+        }
+
+        // 1. Tạo đối tượng Hóa đơn
+        HoaDon hoaDon = new HoaDon();
+        hoaDon.setMaHd("HD" + (System.currentTimeMillis() % 100000));
+        hoaDon.setKhachHang(khachHang);
+        hoaDon.setNgayLap(LocalDateTime.now());
+        hoaDon.setDiaChiGiaoHang(diaChi);
+        hoaDon.setSoDienThoaiGiaoHang(sdt);
+        hoaDon.setPhuongThucThanhToan(phuongThuc);
+        hoaDon.setTongTien(sp.getGia().multiply(new BigDecimal(soLuong)));
+
+        if (phuongThuc.equalsIgnoreCase("Tiền mặt")) {
+            hoaDon.setTrangThai("Chờ giao hàng (Thanh toán khi nhận hàng)");
+        } else {
+            hoaDon.setTrangThai("Chờ thanh toán (Chuyển khoản ngân hàng)");
+        }
+
+        HoaDon savedHoaDon = hoaDonRepository.save(hoaDon);
+
+        // 2. Trừ tồn kho
+        sp.setSoLuong(sp.getSoLuong() - soLuong);
+        sanPhamRepository.save(sp);
+
+        // 3. Tạo chi tiết hóa đơn
+        ChiTietHoaDon cthd = new ChiTietHoaDon();
+        cthd.setHoaDon(savedHoaDon);
+        cthd.setSanPham(sp);
+        cthd.setSoLuong(soLuong);
+        cthd.setDonGia(sp.getGia());
+        chiTietHoaDonRepository.save(cthd);
+
+        return savedHoaDon;
+    }
+
+    @Transactional
     public HoaDon taoDonHangTuGioHang(KhachHang khachHang, String diaChi, String sdt, String phuongThuc) {
         List<ChiTietGioHang> gioHang = chiTietGioHangRepository.findByKhachHang(khachHang);
         if (gioHang.isEmpty()) {

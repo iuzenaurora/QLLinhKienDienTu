@@ -1,3 +1,53 @@
-<footer th:fragment="footer" class="bg-dark text-white text-center p-3 mt-4">
-  © 2026 TechStore
+<footer th:fragment="footer" class="bg-dark text-white pt-5 pb-4 mt-auto border-top border-5 border-danger">
+  <div class="container main-container">
+    <div class="row">
+      <!-- Cột 1: Thông tin công ty -->
+      <div class="col-md-4 mb-4">
+        <h5 class="text-uppercase fw-bold mb-3 fs-4">
+          PhuKien<span style="color: #ffc107;">Re</span>
+        </h5>
+        <p class="text-secondary" style="line-height: 1.6;">
+          Hệ thống bán lẻ phụ kiện điện thoại uy tín, chất lượng với giá cả cạnh tranh nhất thị trường. Đảm bảo bảo hành 12 tháng 1 đổi 1 cho mọi sản phẩm.
+        </p>
+        <div class="mt-4">
+          <a href="#" class="text-secondary hover-text-white me-3 fs-4 transition-colors"><i class="fab fa-facebook"></i></a>
+          <a href="#" class="text-secondary hover-text-white me-3 fs-4 transition-colors"><i class="fab fa-youtube"></i></a>
+          <a href="#" class="text-secondary hover-text-white fs-4 transition-colors"><i class="fab fa-tiktok"></i></a>
+        </div>
+      </div>
+
+      <!-- Cột 2: Chính sách -->
+      <div class="col-md-4 mb-4 ps-md-5">
+        <h6 class="text-uppercase fw-bold mb-4">Chính sách hỗ trợ</h6>
+        <ul class="list-unstyled">
+          <li class="mb-3"><a href="#" class="text-secondary text-decoration-none hover-text-danger transition-colors"><i class="fas fa-angle-right me-2"></i>Chính sách bảo hành</a></li>
+          <li class="mb-3"><a href="#" class="text-secondary text-decoration-none hover-text-danger transition-colors"><i class="fas fa-angle-right me-2"></i>Chính sách đổi trả</a></li>
+          <li class="mb-3"><a href="#" class="text-secondary text-decoration-none hover-text-danger transition-colors"><i class="fas fa-angle-right me-2"></i>Giao hàng & Thanh toán</a></li>
+          <li class="mb-3"><a href="#" class="text-secondary text-decoration-none hover-text-danger transition-colors"><i class="fas fa-angle-right me-2"></i>Bảo mật thông tin</a></li>
+        </ul>
+      </div>
+
+      <!-- Cột 3: Liên hệ -->
+      <div class="col-md-4 mb-4">
+        <h6 class="text-uppercase fw-bold mb-4">Thông tin liên hệ</h6>
+        <div class="text-secondary">
+          <p class="mb-3"><i class="fas fa-map-marker-alt me-3 text-danger"></i> 140 Lê Trọng Tấn, Tân Phú, TP.HCM</p>
+          <p class="mb-3"><i class="fas fa-envelope me-3 text-danger"></i> support@phukienre.vn</p>
+          <p class="mb-3 fw-bold text-white fs-5"><i class="fas fa-phone-alt me-3 text-danger"></i> Tổng đài: 1800.1234</p>
+        </div>
+      </div>
+    </div>
+
+    <hr class="mt-2 mb-4 border-secondary">
+
+    <div class="text-center text-secondary small">
+      © 2026 PhuKienRe - Đồ án Công nghệ Java. All Rights Reserved.
+    </div>
+  </div>
+
+  <style>
+    .hover-text-danger:hover { color: #d70018 !important; }
+    .hover-text-white:hover { color: #ffffff !important; }
+    .transition-colors { transition: color 0.3s ease; }
+  </style>
 </footer>
