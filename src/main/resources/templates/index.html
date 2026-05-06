@@ -1,14 +1,48 @@
 <!DOCTYPE html>
-<html lang="en"
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
       th:replace="~{layouts/layoutCustomer :: layout(~{::title}, ~{::section})}">
 <head>
     <meta charset="UTF-8">
-    <title>Trang chủ</title>
+    <title th:text="${pageTitle}">Trang chủ</title>
 </head>
 <body>
     <section>
-        <h1>Trang chủ</h1>
-        <p>Chào mừng đến với hệ thống</p>
+        <h1 class="mb-4">Danh sách sản phẩm</h1>
+
+        <div th:if="${#lists.isEmpty(sanphams)}" class="alert alert-info">
+            Không có sản phẩm nào để hiển thị.
+        </div>
+
+        <div class="row" th:if="${not #lists.isEmpty(sanphams)}">
+            <div class="col-md-3 col-sm-6 mb-4" th:each="sp : ${sanphams}">
+                <div class="card h-100 shadow-sm border-0">
+                    <a th:href="@{/}">
+                        <img th:src="${'/images/' + sp.hinhAnh}"
+                             class="card-img-top img-fluid p-3"
+                             th:alt="${sp.tenSp}"
+                             style="height: 250px; object-fit: contain;"
+                        />
+                    </a>
+
+                    <div class="card-body text-center pt-0">
+                        <h6 class="card-title" style="min-height: 40px">
+                            <a th:href="@{/}" class="text-decoration-none text-dark fw-bold">
+                                <span th:text="${sp.tenSp}"></span>
+                            </a>
+                        </h6>
+
+                        <p class="card-text text-danger fw-bold fs-5 mb-3"
+                           th:text="${#numbers.formatDecimal(sp.gia, 0, 'COMMA', 0, 'POINT')} + 'VND'"></p>
+
+                        <div class="d-flex justify-content-center gap-2">
+                            <a th:href="@{/}" class="btn btn-outline-danger btn-sm flex-fill fw-semibold">
+                                <i class="bi bi-cart-plus"></i> Thêm giỏ
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
 </body>
 </html>
