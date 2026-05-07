@@ -188,7 +188,7 @@ GO
 INSERT INTO KhachHang VALUES
 ('KH001', N'Nguyễn Văn A', N'Nam', 'TP.HCM', '0123456789', 'a@gmail.com', null)
 
-INSERT INTO DanhMuc (MaDM, TenDM) VALUES
+INSERT INTO DanhMuc (MaDM, TenDM) VALUES 
 ('DM01',N'Ốp lưng'),
 ('DM02',N'Tai nghe'),
 ('DM03',N'Sạc dự phòng'),
@@ -197,14 +197,14 @@ INSERT INTO DanhMuc (MaDM, TenDM) VALUES
 ('DM06',N'Chuột'),
 ('DM07',N'Bàn Phím');
 
-INSERT INTO NhaCungCap (MaNCC, TenNCC, DiaChi, SoDienThoai, Email) VALUES
+INSERT INTO NhaCungCap (MaNCC, TenNCC, DiaChi, SoDienThoai, Email) VALUES 
 ('NCC01',N'Phụ kiện An Phát', N'Hà Nội', '0987654321', 'anphat@gmail.com'),
 ('NCC02',N'MobileKing', N'TP.HCM', '0912345678', 'mobileking@gmail.com'),
 ('NCC03',N'TechZone', N'Đà Nẵng', '0905123456', 'techzone@gmail.com'),
 ('NCC04',N'Phụ kiện Minh Tâm', N'Cần Thơ', '0977888999', 'minhtam@gmail.com'),
 ('NCC05',N'GadgetPro', N'Hải Phòng', '0933444555', 'gadgetpro@gmail.com');
 
-INSERT INTO SanPham (MaSP, TenSP, MaDM, MaNCC, Gia, SoLuong, MoTa, HinhAnh, TinhTrang) VALUES
+INSERT INTO SanPham (MaSP, TenSP, MaDM, MaNCC, Gia, SoLuong, MoTa, HinhAnh, TinhTrang) VALUES 
 ('SP001',N'Ốp lưng iPhone 14 trong suốt', 'DM01','NCC01', 120000, 50, N'Ốp lưng nhựa dẻo chống sốc', N'OpLungiPhone14TrongSuot.jpg', N'Còn hàng'),
 ('SP002',N'Ốp lưng Samsung S23 chống va đập','DM01','NCC01', 250000, 30, N'Ốp lưng silicon cao cấp', N'OpLungSamSungS23.jpg', N'Còn hàng'),
 ('SP003',N'Ốp lưng MagSafe iPhone 15','DM01','NCC01', 120000, 40, N'Hỗ trợ sạc không dây', N'OpLungMagsafeiPhone15.jpg', N'Còn hàng'),

@@ -20,7 +20,7 @@ public class HoaDonService {
     @Autowired
     private SanPhamRepository sanPhamRepository;
     @Autowired
-    private com.doan.qllinhkiendientu.repositories.ChiTietGioHangRepository chiTietGioHangRepository;
+    private ChiTietGioHangRepository chiTietGioHangRepository;
 
     @Transactional
     public HoaDon taoDonHangTrucTiep(KhachHang khachHang, String maSp, int soLuong, String diaChi, String sdt, String phuongThuc) {

@@ -26,7 +26,7 @@ public class ThongBao {
     private LocalDateTime ngayTao;
 
     @Column(name = "TrangThai")
-    private boolean trangThai = false;
+    private boolean trangThai = false; // false: Chưa xem, true: Đã xem
 
     @PrePersist
     protected void onCreate() {
