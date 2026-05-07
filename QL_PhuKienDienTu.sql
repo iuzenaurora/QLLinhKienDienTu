@@ -185,6 +185,23 @@ GO
 ALTER TABLE SanPham ADD NguongToiThieu INT DEFAULT 10;
 GO
 
+-- Cập nhật chung cho tất cả sản phẩm là 5 (nếu chưa làm)
+UPDATE SanPham SET NguongToiThieu = 5;
+
+-- Cập nhật riêng cho các nhóm hàng bán chạy (cần ngưỡng cao hơn để nhập hàng sớm)
+UPDATE SanPham SET NguongToiThieu = 15 WHERE MaDM = 'DM04'; -- Ví dụ: Cáp sạc
+UPDATE SanPham SET NguongToiThieu = 10 WHERE MaDM = 'DM01'; -- Ví dụ: Ốp lưng
+
+-- Cập nhật đích danh cho sản phẩm cụ thể
+UPDATE SanPham SET NguongToiThieu = 3 WHERE MaSP = 'SP020'; -- Bàn phím AKKO giá trị cao, để ngưỡng thấp
+
+-- Giả sử SP001 đang có 50 cái, ngưỡng là 10. Ta sửa cho nó còn 5 cái.
+UPDATE SanPham 
+SET SoLuong = 5, NguongToiThieu = 10 
+WHERE MaSP = 'SP001';
+-- Kiểm tra lại để chắc chắn dữ liệu đã thay đổi
+SELECT MaSP, TenSP, SoLuong, NguongToiThieu FROM SanPham WHERE MaSP = 'SP001';
+SELECT * FROM ThongBao ORDER BY NgayTao DESC;
 INSERT INTO KhachHang VALUES
 ('KH001', N'Nguyễn Văn A', N'Nam', 'TP.HCM', '0123456789', 'a@gmail.com', null)
 
@@ -227,3 +244,4 @@ INSERT INTO SanPham (MaSP, TenSP, MaDM, MaNCC, Gia, SoLuong, MoTa, HinhAnh, Tinh
 ('SP020',N'Bàn phím cơ AKKO 3068B Pincess Switch','DM07', 'NCC02', 1999000, 10, N'Kết nối đa chế độ, Keycap chất lượng, Pin dung lượng khoảng 1800 mAh', N'Bàn phím cơ AKKO 3068B Pincess Switch.png', N'Còn hàng')
 
 select * from ChiTietGioHang
+

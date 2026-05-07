@@ -1,7 +1,8 @@
 package com.doan.qllinhkiendientu.Services;
 
+import com.doan.qllinhkiendientu.Repositories.SanPhamRepository;
 import com.doan.qllinhkiendientu.models.*;
-import com.doan.qllinhkiendientu.repositories.*;
+import com.doan.qllinhkiendientu.Repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -13,7 +14,7 @@ import java.util.Optional;
 public class GioHangService {
 
     @Autowired
-    private ChiTietGioHangRepository chiTietGioHangRepository;
+    private com.doan.qllinhkiendientu.repositories.ChiTietGioHangRepository chiTietGioHangRepository;
 
     @Autowired
     private SanPhamRepository sanPhamRepository;

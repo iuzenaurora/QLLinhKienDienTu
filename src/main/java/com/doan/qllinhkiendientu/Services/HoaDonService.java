@@ -1,7 +1,8 @@
 package com.doan.qllinhkiendientu.Services;
 
+import com.doan.qllinhkiendientu.Repositories.SanPhamRepository;
 import com.doan.qllinhkiendientu.models.*;
-import com.doan.qllinhkiendientu.repositories.*;
+import com.doan.qllinhkiendientu.Repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,13 +15,13 @@ import java.util.List;
 public class HoaDonService {
 
     @Autowired
-    private HoaDonRepository hoaDonRepository;
+    private com.doan.qllinhkiendientu.repositories.HoaDonRepository hoaDonRepository;
     @Autowired
-    private ChiTietHoaDonRepository chiTietHoaDonRepository;
+    private com.doan.qllinhkiendientu.repositories.ChiTietHoaDonRepository chiTietHoaDonRepository;
     @Autowired
     private SanPhamRepository sanPhamRepository;
     @Autowired
-    private ChiTietGioHangRepository chiTietGioHangRepository;
+    private com.doan.qllinhkiendientu.repositories.ChiTietGioHangRepository chiTietGioHangRepository;
 
     @Transactional
     public HoaDon taoDonHangTrucTiep(KhachHang khachHang, String maSp, int soLuong, String diaChi, String sdt, String phuongThuc) {
