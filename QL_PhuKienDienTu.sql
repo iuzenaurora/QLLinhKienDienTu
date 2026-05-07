@@ -182,3 +182,45 @@ CREATE TABLE ThongBao (
 )
 GO
 
+INSERT INTO KhachHang VALUES
+('KH001', N'Nguyễn Văn A', N'Nam', 'TP.HCM', '0123456789', 'a@gmail.com', null)
+
+INSERT INTO DanhMuc (MaDM, TenDM) VALUES 
+('DM01',N'Ốp lưng'),
+('DM02',N'Tai nghe'),
+('DM03',N'Sạc dự phòng'),
+('DM04',N'Cáp sạc'),
+('DM05',N'Kính cường lực'),
+('DM06',N'Chuột'),
+('DM07',N'Bàn Phím');
+
+INSERT INTO NhaCungCap (MaNCC, TenNCC, DiaChi, SoDienThoai, Email) VALUES 
+('NCC01',N'Phụ kiện An Phát', N'Hà Nội', '0987654321', 'anphat@gmail.com'),
+('NCC02',N'MobileKing', N'TP.HCM', '0912345678', 'mobileking@gmail.com'),
+('NCC03',N'TechZone', N'Đà Nẵng', '0905123456', 'techzone@gmail.com'),
+('NCC04',N'Phụ kiện Minh Tâm', N'Cần Thơ', '0977888999', 'minhtam@gmail.com'),
+('NCC05',N'GadgetPro', N'Hải Phòng', '0933444555', 'gadgetpro@gmail.com');
+
+INSERT INTO SanPham (MaSP, TenSP, MaDM, MaNCC, Gia, SoLuong, MoTa, HinhAnh, TinhTrang) VALUES 
+('SP001',N'Ốp lưng iPhone 14 trong suốt', 'DM01','NCC01', 120000, 50, N'Ốp lưng nhựa dẻo chống sốc', N'OpLungiPhone14TrongSuot.jpg', N'Còn hàng'),
+('SP002',N'Ốp lưng Samsung S23 chống va đập','DM01','NCC01', 250000, 30, N'Ốp lưng silicon cao cấp', N'OpLungSamSungS23.jpg', N'Còn hàng'),
+('SP003',N'Ốp lưng MagSafe iPhone 15','DM01','NCC01', 120000, 40, N'Hỗ trợ sạc không dây', N'OpLungMagsafeiPhone15.jpg', N'Còn hàng'),
+('SP004',N'Ốp lưng da Galaxy Z Flip 5','DM01','NCC01', 300000, 25, N'Chất liệu da thật, cao cấp', N'OpLungDaGalaxyZFlip5.jpg', N'Còn hàng'),
+('SP005',N'Tai nghe Bluetooth Baseus','DM02','NCC01', 350000, 60, N'Tai nghe không dây pin 8 giờ', N'TaiNgheBluetoothBaseus.jpg', N'Còn hàng'),
+('SP006',N'Tai nghe True Wireless Xiaomi Buds','DM02','NCC01', 490000, 50, N'Chống ồn chủ động, Bluetooth 5.3', N'TaiNgheTrueWirelessXiaomiBuds.jpg', N'Còn hàng'),
+('SP007',N'Tai nghe Apple AirPods 3','DM02','NCC01', 4500000, 20, N'Âm thanh không gian, cảm biến lực', N'AirPods3.jpg', N'Còn hàng'),
+('SP008',N'Tai nghe Samsung Buds2 Pro','DM02','NCC01', 4200000, 25, N'Hỗ trợ âm thanh 24-bit Hi-Fi', N'SamSungBuds2Pro.jpg', N'Còn hàng'),
+('SP009',N'Sạc dự phòng Romoss 20000mAh Sense8','DM03','NCC01', 590000, 40, N'Hỗ trợ sạc nhanh PD 18W, 3 cổng ra', N'SacDuPhongRomoss20000mAhSense8.jpg', N'Còn hàng'),
+('SP010',N'Sạc dự phòng Innostyle PowerGo 10000mAh', 'DM03','NCC01', 690000, 35, N'Thiết kế nhỏ gọn, sạc nhanh QC 3.0', N'InnostylePowerGo10000mAh.jpg', N'Còn hàng'),
+('SP011',N'Cáp sạc Baseus Type-C 2m','DM04','NCC01', 259000, 80, N'Dây bọc dù siêu bền, hỗ trợ PD 60W', N'CapSacBaseusType-C2m.jpg', N'Còn hàng'),
+('SP012',N'Cáp sạc Remax Lightning RC-094i','DM04','NCC01', 119000, 70, N'Chứng nhận MFi, độ bền cao', N'CapSacRemaxLightningRC-094i.jpg', N'Còn hàng'),
+('SP013',N'Kính cường lực iPhone 14 Pro Max Nillkin','DM05','NCC01', 129000, 50, N'Kính Nillkin 9H, chống vân tay, độ trong cao', N'CuongLuciPhone14ProMaxNillkin.jpg', N'Còn hàng'),
+('SP014',N'Kính cường lực KingKong','DM05', 'NCC01', 309000, 60, N'Chống trầy, phủ nano, cảm ứng nhạy', N'CuongLucKingKong.jpg', N'Còn hàng'),
+('SP015',N'Chuột không dây Ugreen Silent MU006','DM06', 'NCC01', 180000, 30, N'Kết nối không dây 2.4 GHz với khoảng cách hoạt động lên tới khoảng 15m, Thiết kế công thái học', N'Chuột không dây Ugreen Silent MU006.png', N'Còn hàng'),
+('SP016',N'Chuột không dây LOGITECH SIGNATURE M650','DM06', 'NCC03', 630000, 10, N'Kết nối không dây linh hoạt, Tích hợp công nghệ SilentTouch', N'Chuột không dây LOGITECH SIGNATURE M650.png', N'Còn hàng'),
+('SP017',N'Chuột Gaming có dây LOGITECH G102 LightSync','DM06', 'NCC02', 395000, 15, N'Trang bị cảm biến gaming cấp độ cao với độ nhạy lên đến 8.000 DPI, Đèn RGB với công nghệ LIGHTSYNC', N'Chuột Gaming có dây LOGITECH G102 LightSync.png', N'Còn hàng'),
+('SP018',N'Bàn phím cơ có dây Newmen GM328','DM07', 'NCC05', 565000, 15, N'Cảm giác gõ phím êm dịu, có độ bền cao, Hệ thống đèn LED ấn tượng', N'Bàn phím cơ có dây Newmen GM328.png', N'Còn hàng'),
+('SP019',N'Bàn phím Bluetooth Newmen BK66 Foldable','DM07', 'NCC04', 1145000, 10, N'Tích hợp touchpad, Thiết kế gập ba khúc (foldable) giúp bàn phím trở nên cực kỳ nhỏ gọn khi mang đi', N'Bàn phím Bluetooth Newmen BK66 Foldable.png', N'Còn hàng'),
+('SP020',N'Bàn phím cơ AKKO 3068B Pincess Switch','DM07', 'NCC02', 1999000, 10, N'Kết nối đa chế độ, Keycap chất lượng, Pin dung lượng khoảng 1800 mAh', N'Bàn phím cơ AKKO 3068B Pincess Switch.png', N'Còn hàng')
+
+select * from ChiTietGioHang
