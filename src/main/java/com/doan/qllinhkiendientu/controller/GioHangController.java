@@ -6,7 +6,7 @@ import com.doan.qllinhkiendientu.models.ChiTietGioHang;
 import com.doan.qllinhkiendientu.models.KhachHang;
 import com.doan.qllinhkiendientu.models.SanPham;
 import com.doan.qllinhkiendientu.repositories.KhachHangRepository;
-import com.doan.qllinhkiendientu.Repositories.SanPhamRepository;
+import com.doan.qllinhkiendientu.repositories.SanPhamRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

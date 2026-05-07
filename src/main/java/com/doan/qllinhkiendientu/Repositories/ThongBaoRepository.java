@@ -1,4 +1,4 @@
-package com.doan.qllinhkiendientu.Repositories;
+package com.doan.qllinhkiendientu.repositories;
 
 import com.doan.qllinhkiendientu.models.ThongBao;
 import org.springframework.data.jpa.repository.JpaRepository;

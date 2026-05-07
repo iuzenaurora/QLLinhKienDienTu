@@ -1,7 +1,7 @@
 package com.doan.qllinhkiendientu.Services;
 
-import com.doan.qllinhkiendientu.Repositories.SanPhamRepository;
-import com.doan.qllinhkiendientu.Repositories.ThongBaoRepository;
+import com.doan.qllinhkiendientu.repositories.SanPhamRepository;
+import com.doan.qllinhkiendientu.repositories.ThongBaoRepository;
 import com.doan.qllinhkiendientu.models.SanPham;
 import com.doan.qllinhkiendientu.models.ThongBao;
 import org.springframework.beans.factory.annotation.Autowired;
