@@ -3,7 +3,7 @@ package com.doan.qllinhkiendientu;
 import com.doan.qllinhkiendientu.models.BinhLuan;
 import com.doan.qllinhkiendientu.models.SanPham;
 import com.doan.qllinhkiendientu.repositories.BinhLuanRepository;
-import com.doan.qllinhkiendientu.Repositories.SanPhamRepository;
+import com.doan.qllinhkiendientu.repositories.SanPhamRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

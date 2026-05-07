@@ -1,6 +1,6 @@
 package com.doan.qllinhkiendientu.controller;
 
-import com.doan.qllinhkiendientu.Repositories.ThongBaoRepository;
+import com.doan.qllinhkiendientu.repositories.ThongBaoRepository;
 import com.doan.qllinhkiendientu.models.ThongBao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
