@@ -182,6 +182,9 @@ CREATE TABLE ThongBao (
 )
 GO
 
+ALTER TABLE SanPham ADD NguongToiThieu INT DEFAULT 10;
+GO
+
 INSERT INTO KhachHang VALUES
 ('KH001', N'Nguyễn Văn A', N'Nam', 'TP.HCM', '0123456789', 'a@gmail.com', null)
 

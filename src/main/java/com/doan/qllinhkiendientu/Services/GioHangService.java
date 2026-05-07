@@ -13,10 +13,11 @@ import java.util.Optional;
 public class GioHangService {
 
     @Autowired
-    private ChiTietGioHangRepository chiTietGioHangRepository;
+    private com.doan.qllinhkiendientu.repositories.ChiTietGioHangRepository chiTietGioHangRepository;
 
     @Autowired
     private SanPhamRepository sanPhamRepository;
+    private com.doan.qllinhkiendientu.repositories.SanPhamRepository sanPhamRepository;
 
     public List<ChiTietGioHang> getGioHangByKhachHang(KhachHang khachHang) {
         return chiTietGioHangRepository.findByKhachHang(khachHang);

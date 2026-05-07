@@ -40,4 +40,7 @@ public class SanPham {
 
     @Column(name = "TinhTrang", columnDefinition = "NVARCHAR(30)")
     private String tinhTrang = "Còn hàng";
+
+    @Column(name = "NguongToiThieu")
+    private Integer nguongToiThieu = 10;
 }
