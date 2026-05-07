@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{layouts/layoutCustomer :: layout(~{::title}, ~{::section})}">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${pageTitle}">Trang chủ</title>
+</head>
+<body>
+<section>
+    <div class="container-fluid my-4">
+        <div class="row">
+
+            <!-- SIDEBAR: Danh mục phụ kiện -->
+            <div class="col-lg-3 col-md-4 mb-4 d-none d-md-block">
+                <div class="card border-0 shadow-sm rounded-3 overflow-hidden" style="position: sticky; top: 20px;">
+                    <div class="card-header text-white text-center fw-bold py-3 fs-6" style="background-color: #d70018;">
+                        DANH MỤC PHỤ KIỆN
+                    </div>
+                    <ul class="list-group list-group-flush sidebar-menu">
+                        <a th:href="@{/}" 
+                           class="list-group-item list-group-item-action border-0 py-3 fw-medium"
+                           th:classappend="${param.category == null} ? 'active-category' : ''">Tất cả sản phẩm</a>
+                        
+                        <a th:each="dm : ${danhmucs}" 
+                           th:href="@{/(category=${dm.maDm})}" 
+                           class="list-group-item list-group-item-action border-0 py-3 fw-medium"
+                           th:classappend="${param.category != null and param.category[0] == dm.maDm} ? 'active-category' : ''"
+                           th:text="${dm.tenDm}">Tên danh mục</a>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- PRODUCT GRID: Danh sách sản phẩm -->
+            <div class="col-lg-9 col-md-8">
+
+                <div th:if="${#lists.isEmpty(sanphams)}" class="alert alert-info text-center shadow-sm">
+                    Không có sản phẩm nào để hiển thị.
+                </div>
+
+                <!-- Sử dụng row-cols để chia đều 4 cột trên Desktop (lg), 3 cột (md), 2 cột (sm) -->
+                <div class="row row-cols-2 row-cols-md-3 row-cols-lg-4 g-3" th:if="${not #lists.isEmpty(sanphams)}">
+
+                    <div class="col" th:each="sp : ${sanphams}">
+                        <div class="card h-100 shadow-sm border-0 rounded-3 product-card p-2">
+                            <a th:href="@{/product/{id}(id=${sp.maSp})}" class="text-center">
+                                <img th:src="${sp.hinhAnh != null ? (#strings.startsWith(sp.hinhAnh, '/') or #strings.startsWith(sp.hinhAnh, 'http') ? sp.hinhAnh : '/images/' + sp.hinhAnh) : 'https://via.placeholder.com/250'}"
+                                     class="card-img-top img-fluid p-2"
+                                     th:alt="${sp.tenSp}"
+                                     style="height: 180px; object-fit: contain; transition: transform 0.3s;"
+                                     onmouseover="this.style.transform='translateY(-5px)'"
+                                     onmouseout="this.style.transform='translateY(0)'"
+                                />
+                            </a>
+
+                            <div class="card-body text-center d-flex flex-column p-2 pt-3">
+                                <a th:href="@{/product/{id}(id=${sp.maSp})}" class="text-decoration-none text-dark mb-2">
+                                    <h6 class="card-title fw-bold product-title" th:text="${sp.tenSp}">Tên Sản Phẩm</h6>
+                                </a>
+
+                                <!-- Giá sản phẩm định dạng theo ảnh (chữ đỏ, chữ 'đ' ở cuối) -->
+                                <p class="card-text fw-bold fs-5 mt-auto mb-3" style="color: #d70018;"
+                                   th:text="${#numbers.formatDecimal(sp.gia, 0, 'COMMA', 0, 'POINT')} + 'đ'"></p>
+
+                                <!-- Nút thêm giỏ hàng (Outline đỏ) -->
+                                <a th:href="@{/cart/add/{id}(id=${sp.maSp})}" class="btn btn-outline-danger btn-sm w-100 fw-semibold d-flex justify-content-center align-items-center gap-2 py-2">
+                                    <i class="bi bi-cart-plus"></i> Thêm giỏ
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CSS bổ sung cho riêng trang này -->
+    <style>
+        /* Hover cho menu sidebar */
+        .sidebar-menu .list-group-item {
+            color: #cb1c22;
+            transition: all 0.2s ease-in-out;
+        }
+        .sidebar-menu .list-group-item:hover {
+            background-color: #fdf2f2;
+            color: #d70018 !important;
+            padding-left: 1.5rem !important; /* Hiệu ứng lùi chữ vào trong */
+        }
+
+        /* Hiệu ứng bóng đổ và nhô lên cho Card sản phẩm */
+        .product-card {
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .product-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.08) !important;
+            z-index: 1;
+        }
+
+        /* Cắt chữ thành 2 dòng (Ellipsis) cho tên sản phẩm nếu quá dài */
+        .product-title {
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            line-height: 1.4;
+            height: 40px;
+            transition: color 0.2s;
+        }
+        .product-title:hover {
+            color: #d70018;
+        }
+
+        .btn-outline-danger {
+            color: #d70018;
+            border-color: #d70018;
+            background-color: transparent;
+        }
+        .btn-outline-danger:hover {
+            background-color: #d70018;
+            color: #fff;
+        }
+    </style>
+</section>
+</body>
+</html>

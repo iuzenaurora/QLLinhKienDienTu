@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{layouts/layoutCustomer :: layout(~{::title}, ~{::section})}">
+<head>
+    <meta charset="UTF-8">
+    <title>Đặt hàng thành công</title>
+</head>
+<body>
+    <section>
+        <div class="container mt-5 text-center">
+            <div class="card shadow-sm border-0 py-5">
+                <div class="card-body">
+                    <i class="bi bi-check-circle-fill text-success" style="font-size: 5rem;"></i>
+                    <h2 class="mt-4 fw-bold">ĐẶT HÀNG THÀNH CÔNG!</h2>
+                    <p class="text-muted fs-5 mt-3">
+                        Cảm ơn bạn đã tin tưởng và mua sắm tại <span class="text-danger fw-bold">PhuKienRe</span>.<br>
+                        Nhân viên của chúng tôi sẽ liên hệ xác nhận đơn hàng sớm nhất có thể.
+                    </p>
+                    <div class="mt-5">
+                        <a th:href="@{/}" class="btn btn-danger btn-lg px-5">QUAY LẠI TRANG CHỦ</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
