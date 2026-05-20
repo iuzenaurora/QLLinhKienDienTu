@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="vi"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layoutAdmin}">
+
+<head>
+  <title>Cập nhật đơn hàng</title>
+</head>
+
+<body>
+
+<div layout:fragment="content">
+
+  <div class="container py-4">
+
+    <!-- TITLE -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+
+      <div>
+
+        <h2 class="fw-bold mb-1">
+          <i class="bi bi-receipt-cutoff"></i>
+          Cập nhật đơn hàng
+        </h2>
+
+        <p class="text-muted mb-0">
+          Mã đơn:
+          <span class="fw-bold text-primary"
+                th:text="${hoaDon.maHD}">
+                    </span>
+        </p>
+
+      </div>
+
+      <a th:href="@{/admin/DanhSachDonHang}"
+         class="btn btn-outline-secondary">
+
+        <i class="bi bi-arrow-left"></i>
+        Quay lại
+
+      </a>
+
+    </div>
+
+    <div class="row g-4">
+
+      <!-- LEFT -->
+      <div class="col-lg-4">
+
+        <div class="card shadow-sm border-0 rounded-4">
+
+          <div class="card-header bg-primary text-white rounded-top-4">
+
+            <h5 class="mb-0">
+              <i class="bi bi-pencil-square"></i>
+              Cập nhật trạng thái
+            </h5>
+
+          </div>
+
+          <div class="card-body">
+
+            <form th:action="@{/admin/DanhSachDonHang/update}"
+                  method="post">
+
+              <input type="hidden"
+                     name="maHD"
+                     th:value="${hoaDon.maHD}">
+
+              <div class="mb-3">
+
+                <label class="form-label fw-semibold">
+
+                  Trạng thái đơn hàng
+
+                </label>
+
+                <select name="trangThai"
+                        class="form-select form-select-lg">
+
+                  <option value="Chưa giao"
+                          th:selected="${hoaDon.trangThai == 'Chưa giao'}">
+
+                     Chưa giao
+
+                  </option>
+
+                  <option value="Đang giao"
+                          th:selected="${hoaDon.trangThai == 'Đang giao'}">
+
+                     Đang giao
+
+                  </option>
+
+                  <option value="Đã giao"
+                          th:selected="${hoaDon.trangThai == 'Đã giao'}">
+
+                     Đã giao
+
+                  </option>
+
+                  <option value="Đã hủy"
+                          th:selected="${hoaDon.trangThai == 'Đã hủy'}">
+
+                     Đã hủy
+
+                  </option>
+
+                </select>
+
+              </div>
+
+              <button type="submit"
+                      class="btn btn-success w-100 btn-lg">
+
+                <i class="bi bi-save"></i>
+                Lưu thay đổi
+
+              </button>
+
+            </form>
+
+          </div>
+
+        </div>
+
+        <!-- CUSTOMER INFO -->
+        <div class="card shadow-sm border-0 rounded-4 mt-4">
+
+          <div class="card-header bg-dark text-white rounded-top-4">
+
+            <h5 class="mb-0">
+              <i class="bi bi-person-circle"></i>
+              Người nhận
+            </h5>
+
+          </div>
+
+          <div class="card-body">
+
+            <p>
+              <strong>Khách hàng:</strong><br>
+              <span th:text="${hoaDon.khachHang.hoTen}"></span>
+            </p>
+
+            <p>
+              <strong>Địa chỉ:</strong><br>
+              <span th:text="${hoaDon.diaChiGiaoHang}"></span>
+            </p>
+
+            <p class="mb-0">
+              <strong>Số điện thoại:</strong><br>
+              <span th:text="${hoaDon.soDienThoaiGiaoHang}"></span>
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- RIGHT -->
+      <div class="col-lg-8">
+
+        <div class="card shadow-sm border-0 rounded-4">
+
+          <div class="card-header bg-success text-white rounded-top-4">
+
+            <h5 class="mb-0">
+
+              <i class="bi bi-cart-check"></i>
+              Chi tiết sản phẩm
+
+            </h5>
+
+          </div>
+
+          <div class="card-body">
+
+            <div class="table-responsive">
+
+              <table class="table table-hover align-middle">
+
+                <thead class="table-light">
+
+                <tr>
+
+                  <th>Sản phẩm</th>
+
+                  <th class="text-center">
+                    Số lượng
+                  </th>
+
+                  <th class="text-end">
+                    Đơn giá
+                  </th>
+
+                </tr>
+
+                </thead>
+
+                <tbody>
+
+                <tr th:each="item : ${chiTiet}">
+
+                  <td>
+
+                    <div class="fw-semibold"
+                         th:text="${item.sanPham.tenSP}">
+                    </div>
+
+                  </td>
+
+                  <td class="text-center">
+
+                                        <span class="badge bg-primary fs-6"
+                                              th:text="${item.soLuong}">
+                                        </span>
+
+                  </td>
+
+                  <td class="text-end fw-bold text-danger">
+
+                                        <span th:text="${#numbers.formatDecimal(item.donGia,0,'COMMA',0,'POINT')} + ' VNĐ'">
+                                        </span>
+
+                  </td>
+
+                </tr>
+
+                </tbody>
+
+              </table>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+</body>
+</html>

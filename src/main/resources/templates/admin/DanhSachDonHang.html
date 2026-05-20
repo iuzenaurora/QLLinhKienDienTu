@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="vi"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layoutAdmin}">
+
+<head>
+    <title>Danh sách đơn hàng</title>
+</head>
+
+<body>
+
+<div layout:fragment="content">
+
+    <div class="container mt-4">
+
+        <div class="card shadow">
+
+            <div class="card-header bg-primary text-white">
+                <h3>Danh sách đơn hàng</h3>
+            </div>
+
+            <div class="card-body">
+
+                <div class="table-responsive">
+
+                    <table class="table table-bordered table-hover align-middle">
+
+                        <thead class="table-dark">
+                        <tr>
+
+                            <th>Mã HD</th>
+
+                            <th>Ngày lập</th>
+
+                            <th>Tổng tiền</th>
+
+                            <th>Trạng thái</th>
+
+                            <th>Thanh toán</th>
+
+                            <th>Địa chỉ giao</th>
+
+                            <th>SĐT giao</th>
+
+                            <th>Khách hàng</th>
+
+                            <th>Nhân viên</th>
+
+                            <th>Thao tác</th>
+
+                        </tr>
+                        </thead>
+
+                        <tbody>
+
+                        <tr th:each="item : ${dsHoaDon}">
+
+                            <td th:text="${item.maHD}"></td>
+
+                            <td th:text="${item.ngayLap}"></td>
+
+                            <td th:text="${#numbers.formatDecimal(item.tongTien,0,'COMMA',0,'POINT')} + ' ₫'"></td>
+
+                            <td>
+
+                                <span
+                                        th:if="${item.trangThai == 'Đã giao'}"
+                                        class="badge bg-success"
+                                        th:text="${item.trangThai}">
+                                </span>
+
+                                <span
+                                        th:if="${item.trangThai != 'Đã giao'}"
+                                        class="badge bg-warning text-dark"
+                                        th:text="${item.trangThai}">
+                                </span>
+
+                            </td>
+
+                            <td th:text="${item.phuongThucThanhToan}"></td>
+
+                            <td th:text="${item.diaChiGiaoHang}"></td>
+
+                            <td th:text="${item.soDienThoaiGiaoHang}"></td>
+
+                            <td th:text="${item.khachHang.hoTen}"></td>
+
+                            <td th:text="${item.nhanVien.hoTen}"></td>
+
+                            <td>
+
+                                <a th:href="@{/admin/donhang/{id}(id=${item.maHD})}"
+                                   class="btn btn-info btn-sm">
+
+                                    Cập nhật
+
+                                </a>
+
+                            </td>
+
+                        </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>
